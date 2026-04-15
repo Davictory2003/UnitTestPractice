@@ -42,3 +42,15 @@ bool Password::has_mixed_case(string str)
   }
   return false;
 }
+
+/*
+  Receives a string and returns a count of how many case-sensitive unique
+  characters there are. If there are duplicate instances of the same character
+  it should only count as a single character.
+*/
+#include <unordered_set>
+unsigned int Password::unique_characters(string str)
+{
+  std::unordered_set<char> chars(str.begin(), str.end());
+  return chars.size();
+}
