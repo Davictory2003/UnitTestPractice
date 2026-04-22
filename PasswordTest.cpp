@@ -13,7 +13,7 @@ protected:
 	virtual void SetUp() {}	   // sets up before each test (after constructor)
 	virtual void TearDown() {} // clean up after each test, (before destructor)
 };
-/*
+
 TEST(PasswordTest, single_letter_password)
 {
 	Password my_password;
@@ -49,7 +49,12 @@ TEST(PasswordTest, mixed_case_all_upper)
 	Password my_password;
 	ASSERT_FALSE(my_password.has_mixed_case("ABCD"));
 }
-*/
+
+TEST(PasswordTest, mixed_case_valid_upper_first)
+{
+	Password my_password;
+	ASSERT_TRUE(my_password.has_mixed_case("Bc"));
+}
 TEST(PasswordTest, unique_chars_empty)
 {
 	Password my_password;
@@ -71,14 +76,13 @@ TEST(PasswordTest, unique_chars_repeating)
 TEST(PasswordTest, unique_chars_mixed_case)
 {
 	Password my_password;
-	// 'z' and 'Z' have distinct ASCII values and thus should count as 2 distinct characters
 	ASSERT_EQ(2, my_password.unique_characters("zZ"));
 }
 
 TEST(PasswordTest, unique_chars_multiple)
 {
 	Password my_password;
-	ASSERT_EQ(5, my_password.unique_characters("aAbBcCabc"));
+	ASSERT_EQ(6, my_password.unique_characters("aAbBcCabc"));
 }
 
 TEST(PasswordTest, unique_chars_numbers)
@@ -102,5 +106,5 @@ TEST(PasswordTest, unique_chars_spaces)
 TEST(PasswordTest, unique_chars_extended)
 {
 	Password my_password;
-	ASSERT_EQ(4, my_password.unique_characters("A a B b"));
+	ASSERT_EQ(5, my_password.unique_characters("A a B b"));
 }
