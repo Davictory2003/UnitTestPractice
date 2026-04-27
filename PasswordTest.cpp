@@ -20,6 +20,12 @@ TEST(PasswordTest, single_letter_password)
 	ASSERT_EQ(1, my_password.count_leading_characters("Z"));
 }
 
+TEST(PasswordTest, all_same_letters_password)
+{
+	Password my_password;
+	ASSERT_EQ(3, my_password.count_leading_characters("ZZZ"));
+}
+
 TEST(PasswordTest, multi_letter_password)
 {
 	Password my_password;
@@ -55,6 +61,13 @@ TEST(PasswordTest, mixed_case_valid_upper_first)
 	Password my_password;
 	ASSERT_TRUE(my_password.has_mixed_case("Bc"));
 }
+
+TEST(PasswordTest, mixed_case_non_letters)
+{
+	Password my_password;
+	ASSERT_TRUE(my_password.has_mixed_case("1aA~_"));
+}
+
 TEST(PasswordTest, unique_chars_empty)
 {
 	Password my_password;
